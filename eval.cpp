@@ -4,7 +4,17 @@
 #include <iostream>
 #include <memory>
 
-int main() {
+int main(int argc, const char* argv[]) {
+
+  // Deserialize the ScriptModule from a file using torch::jit::load().
+  torch::jit::script::Module module;
+  try {
+    module = torch::jit::load(argv[1]);
+  }
+  catch (const c10::Error& e) {
+    std::cerr << "error loading the model\n";
+    return -1;
+  }
 
   //Note that hist and nbrs trajecories should be computed wrt to the reference vehicle
   //The following are Dummy variables for testing
@@ -15,9 +25,6 @@ int main() {
   torch::Tensor lon_enc = torch::zeros({1,2});
   torch::Tensor mask = torch::ones({1,3,13,64}, {torch::kByte});
 
-  //load the traced model
-  torch::jit::script::Module module;
-  module = torch::jit::load("/home/hasan/cpp-pytorch-projects/eval-csp-simulator/traced_net_model.pt");
 
   //Concatentae the inputs into IValue Struct
   //hist, nbrs, mask, lat_enc, lon_enc
