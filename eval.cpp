@@ -36,13 +36,13 @@ int main(int argc, const char* argv[]) {
   inputs.push_back(lon_enc);
 
   //Forward Pass to evaluate the model on the given inputs
-  //Out concatenates the outputs: fut_pred, lat_pred, lon_pred
-  auto out = module.forward(inputs).toTuple();
+  //Outputs concatenates three predicted outputs: fut_pred, lat_pred, lon_pred
+  auto outputs = module.forward(inputs).toTuple();
 
   //unpack out into fut_pred, lat_pred, lon_pred
-  auto fut_pred = out->elements()[0].toTensorList();
-  torch::Tensor lat_pred = out->elements()[1].toTensor();
-  torch::Tensor lon_pred = out->elements()[2].toTensor();
+  auto fut_pred = outputs->elements()[0].toTensorList();
+  torch::Tensor lat_pred = outputs->elements()[1].toTensor();
+  torch::Tensor lon_pred = outputs->elements()[2].toTensor();
 
   //Find the manuever-based future trajectory
   int lat_man = lat_pred.argmax(1).item().toInt();
