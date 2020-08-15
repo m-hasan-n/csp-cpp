@@ -16,7 +16,7 @@ int main(int argc, const char* argv[]) {
     return -1;
   }
 
-  //Note that hist and nbrs trajecories should be computed wrt to the reference vehicle
+  //Note that hist and nbrs trajectories should be computed wrt to the reference vehicle
   //The following are Dummy variables for testing
   //hist, nbrs, mask, lat_enc, lon_enc
   torch::Tensor hist = torch::zeros({16,1,2});
@@ -49,6 +49,11 @@ int main(int argc, const char* argv[]) {
   int lon_man = lon_pred.argmax(1).item().toInt();
   int indx = lon_man*3 + lat_man;
   torch::Tensor fut_pred_max = fut_pred[indx];
+
+  //Each row of the future predicted trajectory is [muX, muY, sigX, sigY, rho]
+  //You can use muX, muY as the predicted X, Y positions
+  //Note that trajectories were computed wrt to the reference vehicle
+  //So the reference position should be added back
 
   //Confirm
   std::cout << lat_pred << std::endl;
