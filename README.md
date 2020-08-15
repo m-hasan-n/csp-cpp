@@ -24,9 +24,9 @@ conda install -c anaconda cmake
 CMake is the recommended build system and will be well supported into the future.
 
 # Evaluating CSP using C++
-This repository includes a 'eval.cpp' script that loads a traced model and evaluates it on a given set of inputs. A 'CMakeLists.txt' is also included to build the application. Follow these steps to test the code:
+This repository includes a 'eval.cpp' script that loads a traced model and evaluates it on a given set of inputs. The model is saved at '/traced-models' and a 'CMakeLists.txt' file is provide to build the application. Follow these steps to test the code:
 
-1- Clone ethe repository to your local machine.
+1- Clone the repository to your local machine.
 
 2- Run the following commands to build the application from within the cloned repository folder:
 ```
@@ -38,3 +38,6 @@ cmake --build . --config Release
 where /absolute/path/to/libtorch should be the ABSOLUTE path to the unzipped LibTorch distribution.
 
 3- Execute the resulting binary found in the build folder: 
+```
+./csp-cpp "../traced-models/traced_net_model.pt"
+```
