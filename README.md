@@ -2,7 +2,7 @@
 Evaluating the Convolutional Social Pooling (CSP) work using the PyTorch C++ frontend
 
 # Installing  
-You can create an Anaconda environment, install CMake and the C+++ distributions of PyTorch as follows:
+You can create an Anaconda environment, install CMake and the C++ distributions of PyTorch as follows:
 
 1- Download the C++ distributions of PyTorch (LibTorch) ZIP archive:
 ```
@@ -42,3 +42,15 @@ where /absolute/path/to/libtorch should be the ABSOLUTE path to the unzipped Lib
 ```
 ./csp-cpp "../traced-models/traced_net_model.pt"
 ```
+
+# References
+
+1- PyTorch documentation
+
+https://pytorch.org/cppdocs/installing.html
+
+https://pytorch.org/tutorials/advanced/cpp_export.html#:~:text=Step%201%3A%20Converting%20Your%20PyTorch,by%20the%20Torch%20Script%20compiler.
+
+2- CSP Code
+
+https://github.com/nachiket92/conv-social-pooling
